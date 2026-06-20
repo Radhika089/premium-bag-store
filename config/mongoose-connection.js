@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
+const dbgr = require("debug")("development: mongoose");
 
 mongoose
-  .connect("mongodb://localhost:27017/LuxeCarry")
+  .connect(process.env.DB_URL)
   .then(function () {
-    console.log("Connected");
+    dbgr("Connected");
   })
   .catch(function (err) {
-    console.error(err);
+    dbgr(err);
   });
 
 module.exports = mongoose.connection;
